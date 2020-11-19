@@ -1,4 +1,4 @@
-# SaveLoadSystem
+# SaveLoadSystem [![Licence](https://img.shields.io/github/license/UdeviklerneREAL/SaveLoadSystem)](https://github.com/UdeviklerneREAL/SaveLoadSystem/blob/main/LICENSE)
 
 ### Why _SaveLoadSystem_?
 _SaveLoadSystem_ is a system make for saving and loading variables. To a file on the user's computer.
