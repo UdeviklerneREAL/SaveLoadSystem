@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="saveLoadSystem:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/saveLoadSystem_jar</output-path>
+    <root id="archive" name="saveLoadSystem.jar">
+      <element id="module-output" name="saveLoadSystem" />
+    </root>
+  </artifact>
+</component>
