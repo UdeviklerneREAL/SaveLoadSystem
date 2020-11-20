@@ -13,13 +13,27 @@ import java.util.Scanner;
  */
 public class SLSMain {
 
+    public enum FileOrDir {
+        CREATEFILE, CREATEDIR
+    }
+
     private final String path;
 
-    public SLSMain(String path) {
+    public SLSMain(String path, FileOrDir fileOrDir) {
         this.path = path;
         File file = new File(this.path);
-        if (!file.exists()) {
-            file.mkdirs();
+        if (fileOrDir == FileOrDir.CREATEDIR) {
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+        } else if (fileOrDir == FileOrDir.CREATEFILE) {
+            if (!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
