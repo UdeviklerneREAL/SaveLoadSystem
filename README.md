@@ -7,6 +7,6 @@ The system supports longs (longs, ints, smalls, bytes), doubles (doubles, floats
 ### Getting Started.
 To get started with _SaveLoadSystem_ you need to create a _SLSMain_ `SLSMain slsMain = new SLSMain("Save folder")`
 (If the folder is not created yet, the system will). To encode a variable, you need to use the adaptive encoding method.
-Like this example with a double `slsMain.encodeDouble(1012934.13233, "TestVarible", "Savefile.txt")`. 
-To decode it again you need to use the adaptive decoding method `slsMain.decodeDouble("TestVarible", "Savefile.txt")`.
+Like this example with a double: `slsMain.encodeDouble(1012934.13233, "TestVarible", "Savefile.txt")`. 
+To decode it again you need to use the adaptive decoding method: `slsMain.decodeDouble("TestVarible", "Savefile.txt")`.
 And that's it.
