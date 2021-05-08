@@ -8,37 +8,28 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * @author Kristoffer Lund
- * @since 1.0
+ * @author Kristoffer Lund, Rafael Diolatzis
+ * @since 1.1
  */
 public class SLSMain {
 
-    public enum FileOrDir {
-        CREATEFILE, CREATEDIR
-    }
 
-    private final String path;
+    private String filepath;
 
-    public SLSMain(String path, FileOrDir fileOrDir) {
-        this.path = path;
-        File file = new File(this.path);
-        if (fileOrDir == FileOrDir.CREATEDIR) {
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-        } else if (fileOrDir == FileOrDir.CREATEFILE) {
-            if (!file.exists()) {
-                try {
-                    file.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    public SLSMain(String filepath) {
+        this.filepath = filepath;
+        File file = new File(this.filepath);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public void encodeLong(long x, String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public void encodeLong(long x, String varName) {
+        File fileAsFile = new File(this.filepath);
         boolean findVarInFile = false;
 
         try {
@@ -73,8 +64,8 @@ public class SLSMain {
         }
     }
 
-    public void encodeLongArray(long[] x, String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public void encodeLongArray(long[] x, String varName) {
+        File fileAsFile = new File(filepath);
         boolean findVarInFile = false;
 
         try {
@@ -122,8 +113,8 @@ public class SLSMain {
         }
     }
 
-    public void encodeDouble(Double x, String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public void encodeDouble(Double x, String varName) {
+        File fileAsFile = new File(filepath);
         boolean findVarInFile = false;
 
         try {
@@ -158,8 +149,8 @@ public class SLSMain {
         }
     }
 
-    public void encodeDoubleArray(double[] x, String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public void encodeDoubleArray(double[] x, String varName) {
+        File fileAsFile = new File(filepath);
         boolean findVarInFile = false;
 
         try {
@@ -207,8 +198,8 @@ public class SLSMain {
         }
     }
 
-    public void encodeBoolean(boolean x, String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public void encodeBoolean(boolean x, String varName) {
+        File fileAsFile = new File(filepath);
         boolean findVarInFile = false;
 
         try {
@@ -243,8 +234,8 @@ public class SLSMain {
         }
     }
 
-    public void encodeBooleanArray(boolean[] x, String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public void encodeBooleanArray(boolean[] x, String varName) {
+        File fileAsFile = new File(filepath);
         boolean findVarInFile = false;
 
         try {
@@ -292,10 +283,10 @@ public class SLSMain {
         }
     }
 
-    public void encodeString(String x, String varName, String file) {
+    public void encodeString(String x, String varName) {
         if (x.contains('"' + "") || x.contains("{") || x.contains("}") || x.contains(","))
             throw new RuntimeException("SLSString cant include " + '"' + " or { or } or ,");
-        File fileAsFile = new File(path + "/" + file);
+        File fileAsFile = new File(filepath);
         boolean findVarInFile = false;
 
         try {
@@ -330,12 +321,12 @@ public class SLSMain {
         }
     }
 
-    public void encodeStringArray(String[] x, String varName, String file) {
+    public void encodeStringArray(String[] x, String varName) {
         for (String y : x) {
             if (y.contains('"' + "") || y.contains("{") || y.contains("}") || y.contains(","))
                 throw new RuntimeException("SLSString cant include " + '"' + " or { or } or ,");
         }
-        File fileAsFile = new File(path + "/" + file);
+        File fileAsFile = new File(filepath);
         boolean findVarInFile = false;
 
         try {
@@ -383,11 +374,11 @@ public class SLSMain {
         }
     }
 
-    public long decodeLong(String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public long decodeLong(String varName) {
+        File fileAsFile = new File(filepath);
 
         if (!fileAsFile.exists()) {
-            throw new RuntimeException("File " + file + " dose not exits!");
+            throw new RuntimeException("File " + filepath + " dose not exits!");
         }
 
         try {
@@ -408,11 +399,11 @@ public class SLSMain {
         }
     }
 
-    public long[] decodeLongArray(String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public long[] decodeLongArray(String varName) {
+        File fileAsFile = new File(filepath);
 
         if (!fileAsFile.exists()) {
-            throw new RuntimeException("File " + file + " dose not exits!");
+            throw new RuntimeException("File " + filepath + " dose not exits!");
         }
 
         try {
@@ -445,11 +436,11 @@ public class SLSMain {
         }
     }
 
-    public double decodeDouble(String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public double decodeDouble(String varName) {
+        File fileAsFile = new File(filepath);
 
         if (!fileAsFile.exists()) {
-            throw new RuntimeException("File " + file + " dose not exits!");
+            throw new RuntimeException("File " + filepath + " dose not exits!");
         }
 
         try {
@@ -470,11 +461,11 @@ public class SLSMain {
         }
     }
 
-    public double[] decodeDoubleArray(String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public double[] decodeDoubleArray(String varName) {
+        File fileAsFile = new File(filepath);
 
         if (!fileAsFile.exists()) {
-            throw new RuntimeException("File " + file + " dose not exits!");
+            throw new RuntimeException("File " + filepath + " dose not exits!");
         }
 
         try {
@@ -507,11 +498,11 @@ public class SLSMain {
         }
     }
 
-    public boolean decodeBoolean(String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public boolean decodeBoolean(String varName) {
+        File fileAsFile = new File(filepath);
 
         if (!fileAsFile.exists()) {
-            throw new RuntimeException("File " + file + " dose not exits!");
+            throw new RuntimeException("File " + filepath + " dose not exits!");
         }
 
         try {
@@ -532,11 +523,11 @@ public class SLSMain {
         }
     }
 
-    public boolean[] decodeBooleanArray(String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public boolean[] decodeBooleanArray(String varName) {
+        File fileAsFile = new File(filepath);
 
         if (!fileAsFile.exists()) {
-            throw new RuntimeException("File " + file + " dose not exits!");
+            throw new RuntimeException("File " + filepath + " dose not exits!");
         }
 
         try {
@@ -569,11 +560,11 @@ public class SLSMain {
         }
     }
 
-    public String decodeString(String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public String decodeString(String varName) {
+        File fileAsFile = new File(filepath);
 
         if (!fileAsFile.exists()) {
-            throw new RuntimeException("File " + file + " dose not exits!");
+            throw new RuntimeException("File " + filepath + " dose not exits!");
         }
 
         try {
@@ -594,11 +585,11 @@ public class SLSMain {
         }
     }
 
-    public String[] decodeStringArray(String varName, String file) {
-        File fileAsFile = new File(path + "/" + file);
+    public String[] decodeStringArray(String varName) {
+        File fileAsFile = new File(filepath);
 
         if (!fileAsFile.exists()) {
-            throw new RuntimeException("File " + file + " dose not exits!");
+            throw new RuntimeException("File " + filepath + " dose not exits!");
         }
 
         try {
@@ -633,4 +624,10 @@ public class SLSMain {
             throw new RuntimeException(Arrays.toString(e.getStackTrace()));
         }
     }
+
+    public void setFilepath(String newFilePath){
+        this.filepath = newFilePath;
+    }
+
+    public String getFilepath() { return this.filepath; }
 }
